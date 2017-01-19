@@ -8,6 +8,12 @@
 
 html, body { height: 100%; }
 
+p {line-height: 2}
+pi {
+line-height: 2;
+font-style: italic;
+}
+
 body {
   font-family: Helvetica, Arial, sans-serif;
   font-size: 16px;

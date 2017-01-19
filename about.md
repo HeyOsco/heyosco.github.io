@@ -1,11 +1,32 @@
 ---
-layout: page
+layout: post
 title: About
 permalink: /about/
 ---
+<p>
+Oscar K. Sandoval is a fourth-year undergraduate student at the University of Virginia always looking to learn new things! He is currently living in Northern Virginia and looking for employment (<a href="mailto:{{ site.email }}">{{ site.email }}</a>)
+</p>
+<h2>Proficient At</h2>
+* Linux (Ubuntu)
+* Java
+* Android 
+* Python 
+* Javascript/PHP
+* Ruby on Rails
+* C
+* Spanish (not a coding language)
+<h2>Experienced In</h2>
+* AWS
+* Cloud Services
+* Computer Networking
+* MySQL
+* CSS
+<h2>Looking to Learn</h2>
+* Alexa Skills
+* Cybersecurity
+* Digital Ocean 
+* Knitting
+* Smooth Jazz
 
-This is the base Jekyll theme. You can find out more info about customizing your Jekyll theme, as well as basic Jekyll usage documentation at [jekyllrb.com](http://jekyllrb.com/)
 
-You can find the source code for the Jekyll new theme at: [github.com/jglovier/jekyll-new](https://github.com/jglovier/jekyll-new)
 
-You can find the source code for Jekyll at [github.com/jekyll/jekyll](https://github.com/jekyll/jekyll)
