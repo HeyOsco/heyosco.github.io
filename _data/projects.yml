@@ -1,0 +1,23 @@
+- name: Gadabout
+  url: Gadabout/
+  short-description: An Android application that uses Google Maps to create, play, and share treasure hunts!
+  image-path: 
+  image-width: 75%
+  image-height: 75%
+
+- name: POTF Lyrics Bot
+  url: POTF-Lyrics-Bot/
+  short-description: A Python Twitter bot that composes Tweets based on my favorite band's lyrics, Poets of the Fall!
+  image-path: /docs/POTF-Lyrics-Bot.png
+  image-width: 75%
+  image-height: 75%
+
+
+
+- name: Sun and Moon QR Pokedex
+  url: SM-QR/
+  short-description: A Ruby on Rails application to help trainers fill out their Pokedex by supplying them with desired QR codes!
+  image-path:
+  image-width: 75%
+  image-height: 75% 
+
