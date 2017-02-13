@@ -1,7 +1,7 @@
 # Site settings
 title: Oscar K. Sandoval (mtfalls)
 email: oks.mtfalls@gmail.com
-description: "Personal musings from yours truly. Let's talk games, music, and coding!"
+description: "A wanderer isn't always lost."
 baseurl: ""
 url: "https://mtfalls.github.io/"
 twitter_username: oks_mtfalls
@@ -10,3 +10,12 @@ github_username:  mtfalls
 # Build settings
 markdown: kramdown
 permalink: pretty
+
+#Collections
+collections:
+  projects:
+    output: true
+
+  tutorials:
+    output: true
+
