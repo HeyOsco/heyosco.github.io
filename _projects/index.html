@@ -3,11 +3,12 @@ layout: post
 title: Projects
 permalink: /projects/
 ---
+<h1>Projects</h1>
 {% for project in site.data.projects %}
   <h3>{{ project.name }}</h3>
   <p>
     {{ project.short-description }} <br>  
-    <a class="post-link" href="{{ project.url }}"><img src="{{ project.image-path }}" style="width: {{ project.image-width }}; height: {{ project.image-width }}"/></a><br>
+    <a class="post-link" href="{{ project.url }}"><img src="{{ project.image-path }}" style="width: {{ project.image-width }}; height: {{ project.image-height }}"/></a><br>
     <a class="post-link" href="{{ project.url }}">More info...</a>
   </p>
 {% endfor %}

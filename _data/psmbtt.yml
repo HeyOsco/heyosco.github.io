@@ -1,0 +1,77 @@
+- name: ♪ “Trainer”
+  unlock: Beginning
+  url: https://www.youtube.com/embed/KwI02CpAod8
+
+- name: ♪ “Wild Pokémon”	
+  unlock: Beginning
+  url: https://www.youtube.com/embed/Csly8e_D0MQ
+
+- name: ♪ “Totem Pokémon”
+  unlock: Beat the game
+  url: https://www.youtube.com/embed/yjbEeVC1yxY
+
+- name: ♪ “Island Kahuna”	
+  unlock: Beat the game
+  url: https://www.youtube.com/embed/wIjsuw0uIqA
+
+- name: ♪ “My Friend Hau”
+  unlock: Beat the game
+  url: https://www.youtube.com/embed/4BYcMPXxJrg
+
+- name: ♪ “Gladion”
+  unlock: Beat the game
+  url: https://www.youtube.com/embed/mDLj143lxVk
+
+- name: ♪ “Team Skull”
+  unlock: Beat the game
+  url: https://www.youtube.com/embed/1hx8H54VgTk
+
+- name: ♪ “Team Skull Admin”
+  unlock: Beat the game
+  url: https://www.youtube.com/embed/3Askr-P3wIY
+
+- name: ♪ “Team Skull Boss”
+  unlock: Beat the game
+  url: https://www.youtube.com/embed/REC7daXbjho
+
+- name: ♪ “Aether Foundation”
+  unlock: Beat the game
+  url: https://www.youtube.com/embed/JcSiaBnXdUs
+
+- name: ♪ “Lusamine, Version 1”
+  unlock: Beat the game
+  url: https://www.youtube.com/embed/WnaVTcUDQMA
+
+- name: ♪ “Lusamine, Version 2”
+  unlock: Beat the game
+  url: https://www.youtube.com/embed/ZRP7tCvg-Og
+
+- name: ♪ “Enter the Ultra Beasts”
+  unlock: Defeat an Ultra Beast
+  url: https://www.youtube.com/embed/E4qdUsfuhh0
+
+- name: ♪ “Elite Four”
+  unlock: Beat the game
+  url: https://www.youtube.com/embed/Dv7AXRqjTuQ
+
+- name: ♪ “League Title Defense”
+  unlock: Beat the game
+  url: https://www.youtube.com/embed/-dkK9r57BNk
+
+- name: ♪ “Legendary Pokémon”
+  unlock: Beat the game
+  url: https://www.youtube.com/embed/37riOeCnnpQ
+
+- name: ♪ “Battle Royal”
+  unlock: Beat the game
+  url: https://www.youtube.com/embed/hi5JEfNuZWw
+
+- name: ♪ “Guardian Deity”
+  unlock: Beat the game
+  url: https://www.youtube.com/embed/cKr616BOslU
+
+- name: ♪ “Battle Tree Boss”
+  unlock: Defeat the boss of the Battle Tree
+  url: https://www.youtube.com/embed/TNZ7gllxeZs
+
+

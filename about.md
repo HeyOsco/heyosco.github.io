@@ -8,11 +8,12 @@ Oscar K. Sandoval is a fourth-year undergraduate student at the University of Vi
 </p>
 <h2>Proficient At</h2>
 * Linux (Ubuntu)
+* Javascript
+* PHP
+* Ruby on Rails
+* Python 
 * Java
 * Android 
-* Python 
-* Javascript/PHP
-* Ruby on Rails
 * C
 * Spanish (not a coding language)
 <h2>Experienced In</h2>
@@ -22,8 +23,8 @@ Oscar K. Sandoval is a fourth-year undergraduate student at the University of Vi
 * MySQL
 * CSS
 <h2>Looking to Learn</h2>
+* XML
 * Alexa Skills
-* Cybersecurity
 * Digital Ocean 
 * Knitting
 * Smooth Jazz
