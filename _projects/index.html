@@ -7,9 +7,10 @@ permalink: /projects/
 {% for project in site.data.projects %}
   <h3>{{ project.name }}</h3>
   <p>
-    {{ project.short-description }} <br>  
+    <strong>Status:</strong> {{ project.status }}<br>
+    <strong>Focus:</strong> {{ project.focus }}<br>
+    {{ project.short-description }} <br>
     <a class="post-link" href="{{ project.url }}"><img src="{{ project.image-path }}" style="width: {{ project.image-width }}; height: {{ project.image-height }}"/></a><br>
     <a class="post-link" href="{{ project.url }}">More info...</a>
   </p>
 {% endfor %}
-

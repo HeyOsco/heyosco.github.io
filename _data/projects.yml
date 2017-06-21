@@ -1,23 +1,35 @@
+- name: ReMus
+  url: ReMus/
+  status: Complete
+  focus: Java, Game Design
+  short-description: Use your hookshot to collect notes and restore music in this platformer!
+  image-path: /docs/ReMus/ReMus_Landing.png
+  image-width: 75%
+  image-height: 75%
+
 - name: Gadabout
   url: Gadabout/
+  status: Complete
+  focus: Android
   short-description: An Android application that uses Google Maps to create, play, and share treasure hunts!
-  image-path: 
+  image-path:
+  image-width: 75%
+  image-height: 75%
+
+- name: Rotom Dex Evolved
+  url: Rotom-Dex-Evolved/
+  status: Ongoing
+  focus: Angular JS, CSS
+  short-description: Furthering the capabilities of your favorite Pokémon technology! Includes QR Pokédex, Type Matchups, and Zygarde Cell Tracker!
+  image-path:
   image-width: 75%
   image-height: 75%
 
 - name: POTF Lyrics Bot
   url: POTF-Lyrics-Bot/
+  status: Complete
+  focus: Python
   short-description: A Python Twitter bot that composes Tweets based on my favorite band's lyrics, Poets of the Fall!
   image-path: /docs/POTF-Lyrics-Bot.png
   image-width: 75%
   image-height: 75%
-
-
-
-- name: Sun and Moon QR Pokedex
-  url: SM-QR/
-  short-description: A Ruby on Rails application to help trainers fill out their Pokedex by supplying them with desired QR codes!
-  image-path:
-  image-width: 75%
-  image-height: 75% 
-
