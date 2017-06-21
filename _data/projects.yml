@@ -1,5 +1,5 @@
 - name: ReMus
-  url: ReMus/
+  url: remus/
   status: Complete
   focus: Java, Game Design
   short-description: Use your hookshot to collect notes and restore music in this platformer!
@@ -8,7 +8,7 @@
   image-height: 75%
 
 - name: Gadabout
-  url: Gadabout/
+  url: gadabout/
   status: Complete
   focus: Android
   short-description: An Android application that uses Google Maps to create, play, and share treasure hunts!
@@ -17,7 +17,7 @@
   image-height: 75%
 
 - name: Rotom Dex Evolved
-  url: Rotom-Dex-Evolved/
+  url: rotom-dex-evolved/
   status: Ongoing
   focus: Angular JS, CSS
   short-description: Furthering the capabilities of your favorite Pokémon technology! Includes QR Pokédex, Type Matchups, and Zygarde Cell Tracker!
@@ -26,7 +26,7 @@
   image-height: 75%
 
 - name: POTF Lyrics Bot
-  url: POTF-Lyrics-Bot/
+  url: potf-lyrics-bot/
   status: Complete
   focus: Python
   short-description: A Python Twitter bot that composes Tweets based on my favorite band's lyrics, Poets of the Fall!
