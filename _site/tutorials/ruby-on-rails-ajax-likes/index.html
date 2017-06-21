@@ -57,131 +57,140 @@
 
   <article class="post-content">
   <h1 id="using-ajax-to-create-a-like-button">Using AJAX to Create a Like Button</h1>
-<p>#### By <strong>Oscar K. Sandoval</strong> (May 8th, 2017)
-<em>Extended from the following tutorials:</em>
-* <a href="https://tests4geeks.com/ajax-in-rails/">Using AJAX in a Ruby on Rails App</a>
-* <a href="https://coderwall.com/p/kqb3xq/rails-4-how-to-partials-ajax-dead-easy">How to partials &amp; AJAX, dead easy</a>
-## Introduction
-AJAX (Asynchronous JavaScript and XML) is a set of web development techniques to update the client’s view without reloading the page. <strong>Liking</strong> is one such example where having to reload the page after liking indidivual entities can become a tiresome experience experience, especially notable during scrolling live feeds of information. Ruby on Rails has AJAX built into its framework, but liking is a feature that must be custom-built for usage. In this tutorial, we will touch all aspects needed to successfully like and unlike specific entities using the Rails framework and some JavaScript.<br />
-## Scenario
-Imagine creating a system where anonymous users are able to like/unlike ideas proposed to benefiting their community. Each idea stores its number of likes as an integer, but how do we prevent anonymous users from continually liking the same idea? One simple solution is to keep liked ideas in a client-side cookie, which also shows which ideas can be unliked. In the following sections, we build the <strong>liking</strong> feature with this scenario in mind.
+
+<h4 id="by-oscar-k-sandoval-may-8th-2017"><strong>By Oscar K. Sandoval (May 8th, 2017)</strong></h4>
+
+<p><em>Extended from the following tutorials:</em></p>
+
+<ul>
+  <li><a href="https://tests4geeks.com/ajax-in-rails/">Using AJAX in a Ruby on Rails App</a></li>
+  <li><a href="https://coderwall.com/p/kqb3xq/rails-4-how-to-partials-ajax-dead-easy">How to partials &amp; AJAX, dead easy</a></li>
+</ul>
+
+<h2 id="introduction">Introduction</h2>
+<p>AJAX (Asynchronous JavaScript and XML) is a set of web development techniques to update the client’s view without reloading the page. <strong>Liking</strong> is one such example where having to reload the page after liking indidivual entities can become a tiresome experience experience, especially notable during scrolling live feeds of information. Ruby on Rails has AJAX built into its framework, but liking is a feature that must be custom-built for usage. In this tutorial, we will touch all aspects needed to successfully like and unlike specific entities using the Rails framework and some JavaScript.  </p>
+
+<h2 id="scenario">Scenario</h2>
+<p>Imagine creating a system where anonymous users are able to like/unlike ideas proposed to benefiting their community. Each idea stores its number of likes as an integer, but how do we prevent anonymous users from continually liking the same idea? One simple solution is to keep liked ideas in a client-side cookie, which also shows which ideas can be unliked. In the following sections, we build the <strong>liking</strong> feature with this scenario in mind.
 ## Gems
-We add these gems to the <code>Gemfile</code>, then run <code>bundle install</code>
-<code>ruby
-gem 'font-awesome-sass' #get the like and unlike icons into your rails project
-gem 'responders' #AJAX respond_to
-</code>
-## Routes
-To handle the server-side transaction of liking an entity, Rails needs to know where to go in which controller.
-In the case of liking ideas, we add this route to <code>config/routes.rb</code>
-<code>ruby
-get '/ideas/like/:id' =&gt; "ideas#like", as: 'idea_like'
-</code>
-## Controller
-For our scenario, we will have two methods in the ideas controller for liking. The first method, <code>index</code>, will be where the table of our ideas will be displayed. The second method, <code>like</code>, is where the primary logic of updating the cookie and database values will take place.
-<code>ruby
-  #/controllers/ideas_controller.rb
-  def index
-    # Get the array of all ideas
-    @ideas = Idea.all
-    # Get the array of all liked ideas, if cookies[:likes] exists
-    @likes = Array.new
-    if cookies[:likes] != nil
-      @likes = JSON.parse(cookies[:likes])
-    end
-  end
-...
- def like
-    @id = @idea.id
-    @likes = Array.new
-    #Check if cookie already exists
-    if cookies[:likes] != nil
-      @likes = JSON.parse(cookies[:likes])
-      #Only add new like to cookie if it doesn't already have it
-      if @likes.include?(@id)
-        #Decrease value in database
-        @idea = Idea.find(params[:id])
-        @idea.decrement!(:likes)
-        @idea.save
-        #Update likes cookie
-        @likes.delete(@id)
-        @json_likes = JSON.generate(@likes)
-        cookies[:likes] = @json_likes
-      else
-        #Update database values
-        @idea = Idea.find(params[:id])
-        @idea.increment!(:likes)
-        @idea.save
-        @likes.push(@id)
-        @json_likes = JSON.generate(@likes)
-        cookies[:likes] = @json_likes
-      end
-    #Else make a new cookie!
-    else
-      #Update database values
-      @idea = Idea.find(params[:id])
-      @idea.increment!(:likes)
-      @idea.save
-      #Make a new cookie
-      @likes.push(@id)
-      @json_likes = JSON.generate(@likes)
-      cookies[:likes] = { :value =&gt; @json_likes, :expires =&gt; Time.now + 2628000 }
-    end
-    @div_id = '#like_button_'+@idea.id.to_s
-     respond_to do |format|
-         format.html
-         format.js
-     end
-  end
-</code>
-The most important lines in regards to making <code>like</code> an AJAX function are the <code>@div_id</code> and <code>respond_to</code> statements. <code>@div_id</code> will be necessary in updating the correct idea that was liked/unliked, and <code>respond_to</code> is used for displaying the updated information after the AJAX call to the controller is complete.
-## View (Main)
-As idea details will be displayed in a list alongside other ideas, a custom view must be rendered per idea based on whether not this idea has already been liked. Rendering smaller, resusable views inside of a main view is known as <strong>partials</strong> in Rails, and in this scenario each idea will be displayed as its own row, with the number of likes being one column of that row.
-<code>ruby
- #/views/ideas/index.html.erb
- &lt;% @ideas.each do |idea| %&gt;
-    &lt;tr&gt;
-         ...
-         &lt;td&gt;
-         &lt;%= render :partial =&gt; 'like_button', locals: {idea: idea}  %&gt;
-         &lt;/td&gt;
-         ...
-    &lt;/tr&gt;
-&lt;% end %&gt;
-</code>
-Some important aspects to note is the name of the partial, and the local variable being passed to the partial, which will both come into play when the partial is initialized.
-## View (Partial)
-In Rails, partials are designated by prepending the name with a hypen, so the <code>like_button</code> partial will be named <code>_like_button.html.erb</code> in the views folder for ideas.
-<code>ruby
-#/views/ideas/_like_button.html.erb
-&lt;div id="like_button_&lt;%= idea.id %&gt;"&gt;
-    # Display the number of likes
-    &lt;%= idea.likes %&gt;
-    # If the idea has not been liked previously, show that the idea can be liked
-    &lt;% unless @likes.include?(idea.id) %&gt;
-      &lt;%= link_to idea_like_path(idea), :remote =&gt; true do %&gt;  
-        &lt;i class="fa fa-thumbs-o-up"&gt;&lt;/i&gt;
-      &lt;% end %&gt;
-     # Else show that the idea can be disliked
-    &lt;% else %&gt;
-      &lt;%= link_to idea_like_path(idea), :remote =&gt; true do %&gt;
-        &lt;i class="fa fa-thumbs-o-down"&gt;&lt;/i&gt;
-      &lt;% end %&gt;
-    &lt;% end %&gt;
-&lt;/div&gt;
-</code>
-Lots of important functionality is built into this partial for a successful AJAX call, so let’s highlight the most imporant aspects:
+We add these gems to the <code>Gemfile</code>, then run <code>bundle install</code></p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">gem</span> <span class="s1">&#39;font-awesome-sass&#39;</span> <span class="c1">#get the like and unlike icons into your rails project</span>
+<span class="n">gem</span> <span class="s1">&#39;responders&#39;</span> <span class="c1">#AJAX respond_to</span></code></pre></div>
+
+<h2 id="routes">Routes</h2>
+<p>To handle the server-side transaction of liking an entity, Rails needs to know where to go in which controller.
+In the case of liking ideas, we add this route to <code>config/routes.rb</code></p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">get</span> <span class="s1">&#39;/ideas/like/:id&#39;</span> <span class="o">=&gt;</span> <span class="s2">&quot;ideas#like&quot;</span><span class="p">,</span> <span class="ss">as</span><span class="p">:</span> <span class="s1">&#39;idea_like&#39;</span></code></pre></div>
+
+<h2 id="controller">Controller</h2>
+<p>For our scenario, we will have two methods in the ideas controller for liking. The first method, <code>index</code>, will be where the table of our ideas will be displayed. The second method, <code>like</code>, is where the primary logic of updating the cookie and database values will take place.</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1">#/controllers/ideas_controller.rb</span>
+  <span class="k">def</span> <span class="nf">index</span>
+    <span class="c1"># Get the array of all ideas</span>
+    <span class="vi">@ideas</span> <span class="o">=</span> <span class="no">Idea</span><span class="o">.</span><span class="n">all</span>
+    <span class="c1"># Get the array of all liked ideas, if cookies[:likes] exists</span>
+    <span class="vi">@likes</span> <span class="o">=</span> <span class="nb">Array</span><span class="o">.</span><span class="n">new</span>
+    <span class="k">if</span> <span class="n">cookies</span><span class="o">[</span><span class="ss">:likes</span><span class="o">]</span> <span class="o">!=</span> <span class="kp">nil</span>
+      <span class="vi">@likes</span> <span class="o">=</span> <span class="no">JSON</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">cookies</span><span class="o">[</span><span class="ss">:likes</span><span class="o">]</span><span class="p">)</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="o">...</span>
+ <span class="k">def</span> <span class="nf">like</span>
+    <span class="vi">@id</span> <span class="o">=</span> <span class="vi">@idea</span><span class="o">.</span><span class="n">id</span>
+    <span class="vi">@likes</span> <span class="o">=</span> <span class="nb">Array</span><span class="o">.</span><span class="n">new</span>
+    <span class="c1">#Check if cookie already exists</span>
+    <span class="k">if</span> <span class="n">cookies</span><span class="o">[</span><span class="ss">:likes</span><span class="o">]</span> <span class="o">!=</span> <span class="kp">nil</span>
+      <span class="vi">@likes</span> <span class="o">=</span> <span class="no">JSON</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">cookies</span><span class="o">[</span><span class="ss">:likes</span><span class="o">]</span><span class="p">)</span>
+      <span class="c1">#Only add new like to cookie if it doesn&#39;t already have it</span>
+      <span class="k">if</span> <span class="vi">@likes</span><span class="o">.</span><span class="n">include?</span><span class="p">(</span><span class="vi">@id</span><span class="p">)</span>
+        <span class="c1">#Decrease value in database</span>
+        <span class="vi">@idea</span> <span class="o">=</span> <span class="no">Idea</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">params</span><span class="o">[</span><span class="ss">:id</span><span class="o">]</span><span class="p">)</span>
+        <span class="vi">@idea</span><span class="o">.</span><span class="n">decrement!</span><span class="p">(</span><span class="ss">:likes</span><span class="p">)</span>
+        <span class="vi">@idea</span><span class="o">.</span><span class="n">save</span>
+        <span class="c1">#Update likes cookie</span>
+        <span class="vi">@likes</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="vi">@id</span><span class="p">)</span>
+        <span class="vi">@json_likes</span> <span class="o">=</span> <span class="no">JSON</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span><span class="vi">@likes</span><span class="p">)</span>
+        <span class="n">cookies</span><span class="o">[</span><span class="ss">:likes</span><span class="o">]</span> <span class="o">=</span> <span class="vi">@json_likes</span>
+      <span class="k">else</span>
+        <span class="c1">#Update database values</span>
+        <span class="vi">@idea</span> <span class="o">=</span> <span class="no">Idea</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">params</span><span class="o">[</span><span class="ss">:id</span><span class="o">]</span><span class="p">)</span>
+        <span class="vi">@idea</span><span class="o">.</span><span class="n">increment!</span><span class="p">(</span><span class="ss">:likes</span><span class="p">)</span>
+        <span class="vi">@idea</span><span class="o">.</span><span class="n">save</span>
+        <span class="vi">@likes</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="vi">@id</span><span class="p">)</span>
+        <span class="vi">@json_likes</span> <span class="o">=</span> <span class="no">JSON</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span><span class="vi">@likes</span><span class="p">)</span>
+        <span class="n">cookies</span><span class="o">[</span><span class="ss">:likes</span><span class="o">]</span> <span class="o">=</span> <span class="vi">@json_likes</span>
+      <span class="k">end</span>
+    <span class="c1">#Else make a new cookie!</span>
+    <span class="k">else</span>
+      <span class="c1">#Update database values</span>
+      <span class="vi">@idea</span> <span class="o">=</span> <span class="no">Idea</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">params</span><span class="o">[</span><span class="ss">:id</span><span class="o">]</span><span class="p">)</span>
+      <span class="vi">@idea</span><span class="o">.</span><span class="n">increment!</span><span class="p">(</span><span class="ss">:likes</span><span class="p">)</span>
+      <span class="vi">@idea</span><span class="o">.</span><span class="n">save</span>
+      <span class="c1">#Make a new cookie</span>
+      <span class="vi">@likes</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="vi">@id</span><span class="p">)</span>
+      <span class="vi">@json_likes</span> <span class="o">=</span> <span class="no">JSON</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span><span class="vi">@likes</span><span class="p">)</span>
+      <span class="n">cookies</span><span class="o">[</span><span class="ss">:likes</span><span class="o">]</span> <span class="o">=</span> <span class="p">{</span> <span class="ss">:value</span> <span class="o">=&gt;</span> <span class="vi">@json_likes</span><span class="p">,</span> <span class="ss">:expires</span> <span class="o">=&gt;</span> <span class="no">Time</span><span class="o">.</span><span class="n">now</span> <span class="o">+</span> <span class="mi">2628000</span> <span class="p">}</span>
+    <span class="k">end</span>
+    <span class="vi">@div_id</span> <span class="o">=</span> <span class="s1">&#39;#like_button_&#39;</span><span class="o">+</span><span class="vi">@idea</span><span class="o">.</span><span class="n">id</span><span class="o">.</span><span class="n">to_s</span>
+     <span class="n">respond_to</span> <span class="k">do</span> <span class="o">|</span><span class="nb">format</span><span class="o">|</span>
+         <span class="nb">format</span><span class="o">.</span><span class="n">html</span>
+         <span class="nb">format</span><span class="o">.</span><span class="n">js</span>
+     <span class="k">end</span>
+  <span class="k">end</span></code></pre></div>
+
+<p>The most important lines in regards to making <code>like</code> an AJAX function are the <code>@div_id</code> and <code>respond_to</code> statements. <code>@div_id</code> will be necessary in updating the correct idea that was liked/unliked, and <code>respond_to</code> is used for displaying the updated information after the AJAX call to the controller is complete.</p>
+
+<h2 id="view-main">View (Main)</h2>
+<p>As idea details will be displayed in a list alongside other ideas, a custom view must be rendered per idea based on whether not this idea has already been liked. Rendering smaller, resusable views inside of a main view is known as <strong>partials</strong> in Rails, and in this scenario each idea will be displayed as its own row, with the number of likes being one column of that row.</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1">#/views/ideas/index.html.erb</span>
+ <span class="o">&lt;</span><span class="sx">% @ideas.each </span><span class="k">do</span> <span class="o">|</span><span class="n">idea</span><span class="o">|</span> <span class="sx">%&gt;</span>
+<span class="sx">    &lt;tr&gt;</span>
+         <span class="o">...</span>
+         <span class="o">&lt;</span><span class="n">td</span><span class="o">&gt;</span>
+         <span class="o">&lt;</span><span class="sx">%= render :partial =</span><span class="o">&gt;</span> <span class="s1">&#39;like_button&#39;</span><span class="p">,</span> <span class="ss">locals</span><span class="p">:</span> <span class="p">{</span><span class="ss">idea</span><span class="p">:</span> <span class="n">idea</span><span class="p">}</span>  <span class="sx">%&gt;</span>
+<span class="sx">         &lt;/td&gt;</span>
+         <span class="o">...</span>
+    <span class="o">&lt;</span><span class="sr">/tr&gt;</span>
+<span class="sr">&lt;% end %&gt;</span></code></pre></div>
+
+<p>Some important aspects to note is the name of the partial, and the local variable being passed to the partial, which will both come into play when the partial is initialized.</p>
+
+<h2 id="view-partial">View (Partial)</h2>
+<p>In Rails, partials are designated by prepending the name with a hypen, so the <code>like_button</code> partial will be named <code>_like_button.html.erb</code> in the views folder for ideas.</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1">#/views/ideas/_like_button.html.erb</span>
+<span class="o">&lt;</span><span class="n">div</span> <span class="nb">id</span><span class="o">=</span><span class="s2">&quot;like_button_&lt;%= idea.id %&gt;&quot;</span><span class="o">&gt;</span>
+    <span class="c1"># Display the number of likes</span>
+    <span class="o">&lt;</span><span class="sx">%= idea.likes %&gt;</span>
+<span class="sx">    # If the idea has not been liked previously, show that the idea can be liked</span>
+<span class="sx">    &lt;% unless @likes.include?(idea.id) %&gt;</span>
+<span class="sx">      &lt;%=</span> <span class="n">link_to</span> <span class="n">idea_like_path</span><span class="p">(</span><span class="n">idea</span><span class="p">),</span> <span class="ss">:remote</span> <span class="o">=&gt;</span> <span class="kp">true</span> <span class="k">do</span> <span class="sx">%&gt;  </span>
+<span class="sx">        &lt;i class=&quot;fa fa-thumbs-o-up&quot;&gt;</span><span class="o">&lt;</span><span class="sr">/i&gt;</span>
+<span class="sr">      &lt;% end %&gt;</span>
+<span class="sr">     # Else show that the idea can be disliked</span>
+<span class="sr">    &lt;% else %&gt;</span>
+<span class="sr">      &lt;%= link_to idea_like_path(idea), :remote =&gt; true do %&gt;</span>
+<span class="sr">        &lt;i class=&quot;fa fa-thumbs-o-down&quot;&gt;&lt;/i</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="sx">% end %&gt;</span>
+<span class="sx">    &lt;% end %&gt;</span>
+<span class="o">&lt;</span><span class="sr">/div&gt;</span></code></pre></div>
+
+<p>Lots of important functionality is built into this partial for a successful AJAX call, so let’s highlight the most imporant aspects:
 * The <code>div</code>’s <code>id</code> is unique for each idea based on its id, which is important for updating the correct idea’s icon after the AJAX call
 * The <code>:remote =&gt; true</code> in each of the <code>link_to</code> enables Rails to service the view through an AJAX call
 * The gem <code>font-awesome-sass</code> is being used here through <code>&lt;i class="fa fa-thumbs-o-up"&gt;&lt;/i&gt;</code> and <code>&lt;i class="fa fa-thumbs-o-down"&gt;&lt;/i&gt;</code>, with the like button being used as the hyperlink to the idea controller <code>like</code> function</p>
 
 <h2 id="updating-the-partial-after-an-ajax-call">Updating the Partial After an AJAX Call</h2>
-<p>After an idea has been liked/unliked through clicking the <code>font-awesome-sass</code> icon, Rails must now update the correct partial.
-<code>ruby
-#/views/ideas/like.js.erb
-$('&lt;%= @div_id %&gt;').html("&lt;%= j (render :partial =&gt; 'like_button', locals: {idea: @idea }) %&gt;");
-</code>
-As the <code>@div_id</code> in the ideas controller matches a <code>div</code>’s <code>id</code> in the ideas view, Rails find the correct partial to update in the view, and refreshes the client’s icon without having to reload the page.</p>
+<p>After an idea has been liked/unliked through clicking the <code>font-awesome-sass</code> icon, Rails must now update the correct partial.</p>
+
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1">#/views/ideas/like.js.erb</span>
+<span class="err">$</span><span class="p">(</span><span class="s1">&#39;&lt;%= @div_id %&gt;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">html</span><span class="p">(</span><span class="s2">&quot;&lt;%= j (render :partial =&gt; &#39;like_button&#39;, locals: {idea: @idea }) %&gt;&quot;</span><span class="p">);</span></code></pre></div>
+
+<p>As the <code>@div_id</code> in the ideas controller matches a <code>div</code>’s <code>id</code> in the ideas view, Rails find the correct partial to update in the view, and refreshes the client’s icon without having to reload the page.</p>
 
   </article>
 
