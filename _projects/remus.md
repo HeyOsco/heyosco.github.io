@@ -5,7 +5,7 @@ permalink: /projects/remus/
 ---
 # **🎼 ReMus: Restoration of Music 🎼**
 
-#### **By Oscar K. Sandoval and 2 Anonymous Contributors (Spring 2017)**
+#### By **Oscar K. Sandoval** and **2 Anonymous Contributors** (Spring 2017)
 _See the full project, including all stages of development at [https://github.com/mtfalls/ReMus](https://github.com/mtfalls/ReMus)_
 
 ## **Summary**

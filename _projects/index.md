@@ -5,7 +5,7 @@ permalink: /projects/
 ---
 <h1>Projects</h1>
 {% for project in site.data.projects %}
-## **{{ project.name }}**
+## **[{{ project.name }}]({{ project.url }})**
   <p>
     <strong>Status:</strong> {{ project.status }}<br>
     <strong>Focus:</strong> {{ project.focus }}<br>
