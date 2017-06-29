@@ -3,7 +3,7 @@ layout: post
 title: Tutorials
 permalink: /tutorials/
 ---
-# Tutorials
+# **Tutorials**
 
 ## **Coding**
 

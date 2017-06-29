@@ -4,6 +4,7 @@ title: A Tempest of Stars
 ---
 
 # **[Projects](/projects/)**
+<p style="height: 10px"></p>
 <a class="post-link" href="/projects/">
 ![Projects](/docs/code_landing.jpg){:class="img-responsive"}{:height="50%" width="50%"}
 </a>

@@ -3,7 +3,7 @@ layout: post
 title: Projects
 permalink: /projects/
 ---
-<h1>Projects</h1>
+#**Projects**
 {% for project in site.data.projects %}
 ## **[{{ project.name }}]({{ project.url }})**
   <p>
