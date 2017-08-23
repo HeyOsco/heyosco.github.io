@@ -30,6 +30,6 @@
   status: Complete
   focus: Python
   short-description: A Python Twitter bot that composes Tweets based on my favorite band's lyrics, Poets of the Fall!
-  image-path: /docs/POTF-Lyrics-Bot.png
+  image-path: /docs/POTF-Lyrics-Bot/potf_landing.png
   image-width: 75%
   image-height: 75%
