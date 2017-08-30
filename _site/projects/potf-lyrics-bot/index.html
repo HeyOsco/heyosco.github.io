@@ -61,34 +61,38 @@
   <article class="post-content">
   <h1 id="poets-of-the-fall-lyrics-bot---potf-mothdocspotf-lyrics-botpotfmothpngclassimg-responsiveheight5-width5"><strong>Poets of the Fall Lyrics Bot</strong>   <img src="/docs/POTF-Lyrics-Bot/potf_moth.png" alt="POTF-Moth" class="img-responsive" height="5%" width="5%" /></h1>
 
-<h4 id="by-oscar-k-sandoval-summer-2017">By <strong>Oscar K. Sandoval</strong> (Summer 2017)</h4>
+<h4 id="by-oscar-k-sandoval-spring-2017">By <strong>Oscar K. Sandoval</strong> (Spring 2017)</h4>
 <p><em>See the full project at <strong><a href="https://github.com/mtfalls/POTF-Lyrics-Bot">https://github.com/mtfalls/POTF-Lyrics-Bot</a></strong></em></p>
 
 <h2 id="summary"><strong>Summary</strong></h2>
 <p><a class="post-link" href="https://twitter.com/POTFLyricsBot"><img src="/docs/POTF-Lyrics-Bot/potf_landing.png" style="width: 100%; height: 100%" /></a>
 <br />
-<strong>POTF-Lyrics-Bot</strong> is Twitter bot that posts a tweet every 6 hours based on three random lyrics from all Poets of the Fall songs! <a href="https://twitter.com/POTFLyricsBot">Click here to view its Twitter page!</a></p>
+<strong>POTF Lyrics Bot</strong> is Twitter bot that posts a tweet every 6 hours based on three random lyrics from all Poets of the Fall songs! <a href="https://twitter.com/POTFLyricsBot">Click here to view its Twitter page!</a></p>
 
 <h2 id="backstory"><strong>Backstory</strong></h2>
 <p>As a longtime POTF fan, I wanted to create something meaningful based on what I know and what I wanted to learn how to do. My favorite aspect of POTF is the extensive vocabulary for their lyrics (I originally wanted to create a program that counted all the unique words across all their songs!). I eventually came to the idea of maintaining a bot that created abstract poems based on POTF lyrics. After a little research on Twitter bots, I found that Python’s <code>tweepy</code> library abstracts the process into simply have the proper authentication keys and the text the program wants to post. Pulling single lines from text files is an easy task to do in Python, so together with <code>tweepy</code> the bot was born!</p>
 
 <h2 id="hosting"><strong>Hosting</strong></h2>
-<p><strong>POTF-Lyrics-Bot</strong> is currently being hosted on a <a href="https://www.digitalocean.com/">Digital Ocean VPS</a> for $5 a month. <code>compose.py</code> searches for three unique lyrics, checks the tweet length to be under 140 characters or less, tweets if successful, then sleeps for 6 hours. To ensure that the bot continues to run after the remote session is closed, I used:</p>
+<p><strong>POTF Lyrics Bot</strong> is currently being hosted on a <a href="https://www.digitalocean.com/">Digital Ocean VPS</a> for $5 a month. <code>compose.py</code> searches for three unique lyrics, checks the tweet length to be under 140 characters or less, tweets if successful, then sleeps for 6 hours. To ensure that the bot continues to run after the remote session is closed, I used:</p>
 
 <div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">nohup</span> <span class="n">python</span> <span class="n">compose</span><span class="o">.</span><span class="n">py</span> <span class="o">&amp;</span></code></pre></div>
 
 <p>To take the bot down for maintenance, I search for the <code>process id</code> using <code>ps -x</code> and kill the process with <code>kill [pid]</code>.</p>
 
 <h2 id="acknowledgements"><strong>Acknowledgements</strong></h2>
-<p>A few people I would like to thank in the development and creation of <strong>POTF-Lyrics-Bot</strong>:</p>
+<p>A few people I would like to thank in the development and creation of <strong>POTF Lyrics Bot</strong>:</p>
 
 <ul>
   <li><a href="http://poetsofthefall.com/">Poets of the Fall</a> for being one of the most inspiring bands I listened to throughout middle and high school</li>
   <li><a href="https://www.python.org/">Python</a> for being an approachable and easy-to-learn programming language</li>
   <li><a href="http://blog.mollywhite.net/">Molly White’s</a> brilliant tutorial on <a href="http://blog.mollywhite.net/twitter-bots-pt2/">how to create a Twitter bot</a></li>
-  <li><a href="https://www.digitalocean.com/">Digital Ocean</a> for providing an affordable cloud platform for amateur and professional developers alike</li>
+  <li><a href="https://www.digitalocean.com/">Digital Ocean</a> for providing an affordable cloud platform for amateur and professional developers alike
+    <ul>
+      <li>If you would $10 of credit for trying out Digital Ocean’s products, <a href="http://www.digitalocean.com/?refcode=d04140365cd1">please follow this referral link! </a></li>
+    </ul>
+  </li>
   <li>my friends who actually though this was a neat idea to pursue (and the one friend who was considering making Kanye West variant haha)</li>
-  <li>and finally you, the reader, for taking interest in <strong>POTF-Lyrics-Bot</strong> :)</li>
+  <li>and finally you, the reader, for taking interest in <strong>POTF Lyrics Bot</strong> :)</li>
 </ul>
 
   </article>

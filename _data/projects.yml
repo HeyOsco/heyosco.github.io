@@ -4,32 +4,41 @@
   focus: Java, Game Design
   short-description: Use your hookshot to collect notes and restore music in this platformer!
   image-path: /docs/ReMus/ReMus_Landing.png
-  image-width: 75%
-  image-height: 75%
+  image-width: 95%
+  image-height: 95%
 
-- name: Gadabout
-  url: gadabout/
+#- name: Rotom Dex Evolved
+#  url: rotom-dex-evolved/
+#  status: Ongoing
+#  focus: Angular JS, CSS
+#  short-description: Furthering the capabilities of your favorite Pokémon technology! Includes QR Pokédex, Type Matchups, and Zygarde Cell Tracker!
+#  image-path:
+#  image-width: 75%
+#  image-height: 75%
+
+#- name: Gadabout
+#  url: gadabout/
+#  status: Complete
+#  focus: Android
+#  short-description: An Android application that uses Google Maps to create, play, and share treasure hunts!
+#  image-path:
+#  image-width: 75%
+#  image-height: 75%
+
+- name: FEH Gauntlet Bot
+  url: feh-gauntlet-bot/
   status: Complete
-  focus: Android
-  short-description: An Android application that uses Google Maps to create, play, and share treasure hunts!
-  image-path:
-  image-width: 75%
-  image-height: 75%
-
-- name: Rotom Dex Evolved
-  url: rotom-dex-evolved/
-  status: Ongoing
-  focus: Angular JS, CSS
-  short-description: Furthering the capabilities of your favorite Pokémon technology! Includes QR Pokédex, Type Matchups, and Zygarde Cell Tracker!
-  image-path:
-  image-width: 75%
-  image-height: 75%
+  focus: Python
+  short-description: Twitter bot that posts hourly updates when disadvantage multipliers are up for Fire Emblem Heroes Voting Gauntlets!
+  image-path: /docs/FEH-Gauntlet-Bot/gauntlet_landing.PNG
+  image-width: 95%
+  image-height: 95%
 
 - name: POTF Lyrics Bot
   url: potf-lyrics-bot/
   status: Complete
   focus: Python
-  short-description: A Python Twitter bot that composes Tweets based on my favorite band's lyrics, Poets of the Fall!
+  short-description: Twitter bot that composes new lyrics based on Poets of The Fall songs!
   image-path: /docs/POTF-Lyrics-Bot/potf_landing.png
-  image-width: 75%
-  image-height: 75%
+  image-width: 95%
+  image-height: 95%

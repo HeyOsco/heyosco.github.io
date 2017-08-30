@@ -66,7 +66,7 @@ Level 4 introduces the concept that the player may have to do several passes of 
 ### **Level 5**
 <iframe width="560" height="315" src="https://www.youtube.com/embed/vRoufgBQWqw" frameborder="0" allowfullscreen></iframe>
 **Music:** DJ Genki - *Lisa RICCIA (DJ Genki Remix)* <br>
-Level 5 is essentially the pinnacle of challenge for pro hookshotters to test their meddle. The level scrolls quickly with few blue platforms for rest, and introduces the player to <span style="color:pink">**pink platforms**</span>, which does not move regardless of how the screen is traveling.  
+Level 5 is essentially the pinnacle of challenge for pro hookshotters to test their meddle. The level scrolls quickly with few blue platforms for rest, and introduces the player to <span style="color:pink">**pink platforms**</span>, which do not move regardless of how the screen is traveling.  
 
 ## **Acknowledgements**
 A few people I would like to thank in the development and creation of ReMus:
