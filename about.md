@@ -5,16 +5,16 @@ permalink: /about/
 ---
 <h1>About</h1>
 <p>
-Oscar K. Sandoval is a fourth-year undergraduate student at the University of Virginia always looking to learn new things! He is currently living in Northern Virginia and looking for employment (<a href="mailto:{{ site.email }}">{{ site.email }}</a>)
+Starting my new career in Feb 2018 as a software engineer in Capital One's <a href="https://campus.capitalone.com/">Technology Development Program</a>!
 </p>
 <h2>Proficient At</h2>
 * Linux (Ubuntu)
 * Javascript
 * PHP
 * Ruby on Rails
-* Python 
+* Python
 * Java
-* Android 
+* Android
 * C
 * Spanish (not a coding language)
 <h2>Experienced In</h2>
@@ -26,9 +26,6 @@ Oscar K. Sandoval is a fourth-year undergraduate student at the University of Vi
 <h2>Looking to Learn</h2>
 * XML
 * Alexa Skills
-* Digital Ocean 
+* Digital Ocean
 * Knitting
 * Smooth Jazz
-
-
-
