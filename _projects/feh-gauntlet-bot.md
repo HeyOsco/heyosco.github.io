@@ -6,7 +6,7 @@ permalink: /projects/feh-gauntlet-bot/
 # **Fire Emblem Heroes Gauntlet Bot**   ![Battle Flag](/docs/FEH-Gauntlet-Bot/battle_flag.png){:class="img-responsive"}{:height="4%" width="4%"}
 
 #### By **Oscar K. Sandoval** (Summer 2017)
-_See the full project at **[https://github.com/mtfalls/FEH-Gauntlet-Bot](https://github.com/mtfalls/FEH-Gauntlet-Bot)**_
+_See the full project at **[https://github.com/atemosta/FEH-Gauntlet-Bot](https://github.com/atemosta/FEH-Gauntlet-Bot)**_
 
 ## **Summary**
 <a class="post-link" href="https://twitter.com/FEHGauntletBot"><img src="/docs/FEH-Gauntlet-Bot/gauntlet_landing.PNG" style="width: 100%; height: 100%"/></a>
